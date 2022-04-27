@@ -13,7 +13,4 @@ WORKDIR /home
 # copy every content from the local file to the image
 COPY ./app.py .
 
-# configure the container to run in an executed manner
-ENTRYPOINT [ "python" ]
-
 CMD ["python", "./app.py" ]
