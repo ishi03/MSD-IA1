@@ -23,7 +23,7 @@ colors = [
 def bar():
     bar_labels=labels
     bar_values=values
-    return render_template('bar_chart.html', title='Bitcoin Monthly Price in USD', max=17000, labels=bar_labels, values=bar_values)
+    return render_template('bar_chart.html', title='Bitcoin Monthly Price in UK', max=17000, labels=bar_labels, values=bar_values)
 
 @app.route('/line')
 def line():
