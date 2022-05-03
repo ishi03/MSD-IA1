@@ -1,22 +1,41 @@
-# Importing flask module in the project is mandatory
-# An object of Flask class is our WSGI application.
-from flask import Flask
+from flask import Flask, Markup, render_template
 
-# Flask constructor takes the name of
-# current module (__name__) as argument.
 app = Flask(__name__)
 
-# The route() function of the Flask class is a decorator,
-# which tells the application which URL should call
-# the associated function.
-@app.route('/')
-# ‘/’ URL is bound with hello_world() function.
-def hello_world():
-	return 'Hello World'
+labels = [
+    'JAN', 'FEB', 'MAR', 'APR',
+    'MAY', 'JUN', 'JUL', 'AUG',
+    'SEP', 'OCT', 'NOV', 'DEC'
+]
 
-# main driver function
+values = [
+    967.67, 1190.89, 1079.75, 1349.19,
+    2328.91, 2504.28, 2873.83, 4764.87,
+    4349.29, 6458.30, 9907, 16297
+]
+
+colors = [
+    "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA",
+    "#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1",
+    "#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]
+
+@app.route('/bar')
+def bar():
+    bar_labels=labels
+    bar_values=values
+    return render_template('bar_chart.html', title='Bitcoin Monthly Price in USD', max=17000, labels=bar_labels, values=bar_values)
+
+@app.route('/line')
+def line():
+    line_labels=labels
+    line_values=values
+    return render_template('line_chart.html', title='Bitcoin Monthly Price in USD', max=17000, labels=line_labels, values=line_values)
+
+@app.route('/pie')
+def pie():
+    pie_labels = labels
+    pie_values = values
+    return render_template('pie_chart.html', title='Bitcoin Monthly Price in USD', max=17000, set=zip(values, labels, colors))
+
 if __name__ == '__main__':
-
-	# run() method of Flask class runs the application
-	# on the local development server.
-	app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80)
