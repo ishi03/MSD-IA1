@@ -13,4 +13,4 @@ WORKDIR /home
 # copy every content from the local file to the image
 COPY ./app.py .
 
-CMD ["python", "./app.py" ]
+CMD ["python", "./run.py" ]
